@@ -1,0 +1,116 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+Index
+{% endblock %}
+{% block body_block %}
+<div class="jumbotron">
+<h1 class="display-3">Rango says...</h1>
+{% if user.is_authenticated %}
+<h1>hey there {{ user.username }}!</h1>
+{% else %}
+<h1>hey there partner! </h1>
+{% endif %}
+</div>
+<div class="row marketing">
+<div class="col-lg-6">
+<h4>Most Liked Categories</h4>
+<p>
+{% if categories %}
+<ul>
+{% for category in categories %}
+<li><a href="{% url 'rango:show_category' category.slug %}">
+{{ category.name }}</a> <span class="tag tag-pill tag-primary">{{category.likes}}</span> </li>
+{% endfor %}
+</ul>
+{% else %}
+<strong>There are no categories present.</strong>
+{% endif %}
+</p>
+</div>
+<div class="col-lg-6">
+    <h4>Most Viewed Pages</h4>
+<p>
+{% if pages %}
+<ul>
+{% for page in pages %}
+<li>
+   <a href="{% url 'rango:goto' %}?page_id={{page.id}}">{{ page.title }}</a>
+    <span class="tag tag-pill tag-primary">{{page.views}}</span>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<strong>There are no categories present.</strong>
+{% endif %}
+</p>
+</div>
+</div>
+<img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" />
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% extends 'rango/base.html' %}#}
+{#{% load staticfiles %}#}
+{#{% block title_block %}#}
+{#{{ index }}#}
+{#{% endblock %}#}
+{#{% block body_block %}#}
+{#    <p> visits: {{ visits }}</p>#}
+{#    {% if user.is_authenticated %}#}
+{#        howdy {{ user.username }}!#}
+{#    {% else %}#}
+{#        hey there partner!#}
+{#    {% endif %}#}
+{#{% if categories %}#}
+{#    <h4>Most Liked Categories</h4>#}
+{#<ul>#}
+{##}
+{#{% for category in categories %}#}
+{#<!-- Following line changed to add an HTML hyperlink -->#}
+{#<li>#}
+{#<a href="{% url 'rango:show_category' category.slug %}">#}
+{#    {{ category.name }}#}
+{#</a>#}
+{#</li>#}
+{#{% endfor %}#}
+{#</ul>#}
+{#{% else %}#}
+{#<strong>There are no categories present.</strong>#}
+{#{% endif %}#}
+{##}
+{##}
+{#<h4>Most Viewed Pages</h4>#}
+{#{% if pages %}#}
+{#    <ul>#}
+{#        {% for page in pages %}#}
+{#            <li>#}
+{#            <a href="{{page.url}}">{{ page.title }}</a>#}
+{#            </li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#{% else %}#}
+{#    <strong>There are no pages present.</strong>#}
+{#{% endif %}#}
+{##}
+{##}
+{#<a href="{% url 'rango:about' %}">About</a>#}
+{#<img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" />#}
+{##}
+{#{% endblock %}#}
+{##}

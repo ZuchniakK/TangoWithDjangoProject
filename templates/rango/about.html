@@ -1,0 +1,51 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+{{ About }}
+{% endblock %}
+{% block body_block %}
+<p> visits: {{ visits }}</p>
+hey there partner! <br />
+    <strong>panie doktorze tu {{ your_name.upper }}</strong><br />
+
+    <div id="msg">Hello
+- I'm here for a JQuery Example too</div>
+
+    <div ng-controller='TimeCtrl1'>
+    <p>tutaj{{ clock  | date:'medium'}}</p>
+</div>
+<script>
+    var module = angular.module('myApp', []);
+
+module.controller('TimeCtrl', function($scope, $interval) {
+  var tick = function() {
+    $scope.clock = Date.now();
+  }
+  tick();
+  $interval(tick, 1000);
+});</script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
+
+<div ng-app="myApp">
+  <div ng-controller='TimeCtrl1'>
+    <p>{{ clock | date:'HH:mm:ss'}}</p>
+  </div>
+</div>
+
+<button class="btn btn-primary"
+onClick="alert('You clicked the button using JavaScript.');">
+Click Me - I run JavaScript
+</button>
+
+<button class="btn btn-primary" id="about-btn">
+Click Me - I'm JavaScript on Speed</button>
+<p>This is a example</p>
+<p>This is another example</p>
+
+<img src="{% static "images/kon2.jpg" %}"
+alt="Picture of Rango" /> <!-- New line -->
+    <img src="{{ MEDIA_URL }}kon.jpg"
+alt="Picture of Rango" /> <!-- New line -->
+
+{% endblock %}

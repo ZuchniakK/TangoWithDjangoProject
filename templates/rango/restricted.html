@@ -1,0 +1,14 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+{% block title_block %}
+{{ restricted }}
+{% endblock %}
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <h3>Only Login Content - {{ user.username }}</h3>
+    {% else %}
+        <h3>no login!</h3>
+        <a href="rango:login"> LOGIN! </a>
+    {% endif %}
+
+{% endblock %}
